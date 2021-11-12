@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Observable } from 'rxjs';
 import { CreateFeedDto, UpdateFeedDto } from '../dto/feed.dto';
@@ -10,11 +10,19 @@ import { FeedService } from '../service/feed.service';
 export class FeedController {
   constructor(private readonly feedService: FeedService) {}
 
-  @Get('feeds')
+  @Get('feed/all')
   @ApiOperation({ summary: 'get all feed' })
   getAllFeed() : Observable<PostFeedInterface[]> 
   {
     return this.feedService.FindAllFeed();
+  }
+
+  @Get('feeds')
+  @ApiOperation({ summary: 'get all feed' })
+  findSelectedFeed(@Query('take') take:number = 1,@Query('skip') skip:number = 1) : Observable<PostFeedInterface[]> 
+  {
+    take = take>20 ? 20 :take;
+    return this.feedService.FindFeed(take, skip);
   }
 
   @Get('feed/:id')

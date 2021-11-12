@@ -24,6 +24,18 @@ export class FeedService
 
     }
 
+
+    FindFeed (take : number=10 , skip : number =0): Observable<PostFeedInterface[]> 
+    {
+        return from(this.prisma.feedPost.findMany({
+            skip,
+            take,
+            
+        }));
+
+    }
+
+
     FindOneFeed (id: number): Observable<PostFeedInterface> 
     {
         return from(this.prisma.feedPost.findUnique({
@@ -36,10 +48,10 @@ export class FeedService
 
     UpdatePostFeed (body: UpdateFeedDto, id: number): Observable<PostFeedInterface>
     {
-            return from(this.prisma.feedPost.update({
+        return from(this.prisma.feedPost.update({
                 where:{id},
                 data: body
-            }));
+        }));
         
     }
 
