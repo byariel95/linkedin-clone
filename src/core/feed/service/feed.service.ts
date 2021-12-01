@@ -1,8 +1,8 @@
 import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { from, Observable } from 'rxjs';
 import { PrismaService } from '../../common/services/prisma.service';
-import { CreateFeedDto, UpdateFeedDto } from '../dto/feed.dto';
-import { PostFeedInterface } from '../interfaces/feed-post.interface';
+import { CreateFeedDto, UpdateFeedDto } from '../../common/dtos/feed.dto';
+import { PostFeedInterface } from '../../common/interfaces/feed-post.interface';
 
 @Injectable()
 export class FeedService 

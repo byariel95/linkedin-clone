@@ -1,8 +1,8 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Observable } from 'rxjs';
-import { CreateFeedDto, UpdateFeedDto } from '../dto/feed.dto';
-import { PostFeedInterface } from '../interfaces/feed-post.interface';
+import { CreateFeedDto, UpdateFeedDto } from '../../common/dtos/feed.dto';
+import { PostFeedInterface } from '../../common/interfaces/feed-post.interface';
 import { FeedService } from '../service/feed.service';
 
 @ApiTags('Feed Routes')
