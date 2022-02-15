@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { initSwagger } from './app.swagger';
-import { AllExceptionFilter } from './core/common/filters/http-exception.filter';
+import { AllExceptionFilter } from './App/common/filters/http-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -16,11 +16,7 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
   app.enableCors();
   app.useGlobalPipes(new ValidationPipe({
-    whitelist:true,
-    transform: true,
-    transformOptions:{
-      enableImplicitConversion:true // convercion de los dtos
-    }
+    whitelist:true
   }));
   app.useGlobalFilters(new AllExceptionFilter());
   initSwagger(app);

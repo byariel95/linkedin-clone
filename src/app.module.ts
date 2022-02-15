@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
-import { FeedModule } from './core/feed/feed.module';
+import { FeedModule } from './App/feed/feed.module';
+import { DatabaseModule } from './App/database/database.module';
 
 @Module({
   imports: [
@@ -9,7 +10,8 @@ import { FeedModule } from './core/feed/feed.module';
       isGlobal: true,
       envFilePath: '.env'
     }),
-    FeedModule
+    FeedModule,
+    DatabaseModule
   ],
   controllers: [AppController]
 })

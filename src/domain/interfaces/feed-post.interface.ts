@@ -1,6 +1,6 @@
 export interface PostFeedInterface 
 {
-    id? : number;
+    id : number;
     body : string;
-    createAt?: Date;
+    createdAt: Date;
 }
