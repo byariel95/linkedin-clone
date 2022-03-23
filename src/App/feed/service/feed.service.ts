@@ -2,14 +2,14 @@ import { Injectable, InternalServerErrorException} from '@nestjs/common';
 import { from, Observable } from 'rxjs';
 import { PrismaService } from '../../database/database.service';
 import { CreateFeedDto, UpdateFeedDto } from '../../common/dtos/feed.dto';
-import { PostFeedInterface } from '../../../domain/interfaces';
+import { PostFeed } from '../../../domain/models';
 
 @Injectable()
 export class FeedService 
 {
     constructor(private prisma: PrismaService){}
 
-    CreatePostFeed (body: CreateFeedDto): Observable<Partial<PostFeedInterface>>
+    CreatePostFeed (body: CreateFeedDto): Observable<Partial<PostFeed>>
     {
         try {
             return from(this.prisma.feedPost.create({data: body}));
@@ -18,14 +18,14 @@ export class FeedService
         }
     }
 
-    FindAllFeed (): Observable<Partial<PostFeedInterface[]>> 
+    FindAllFeed (): Observable<Partial<PostFeed[]>> 
     {
         return from(this.prisma.feedPost.findMany());
 
     }
 
 
-    FindFeed (take : number=10 , skip : number =0): Observable<Partial<PostFeedInterface[]>> 
+    FindFeed (take : number=10 , skip : number =0): Observable<Partial<PostFeed[]>> 
     {
         return from(this.prisma.feedPost.findMany({
             skip,
@@ -36,7 +36,7 @@ export class FeedService
     }
 
 
-    FindOneFeed (id: number): Observable<Partial<PostFeedInterface>> 
+    FindOneFeed (id: number): Observable<Partial<PostFeed>> 
     {
         return from(this.prisma.feedPost.findUnique({
             where: {
@@ -46,7 +46,7 @@ export class FeedService
 
     }
 
-    UpdatePostFeed (body: UpdateFeedDto, id: number): Observable<Partial<PostFeedInterface>>
+    UpdatePostFeed (body: UpdateFeedDto, id: number): Observable<Partial<PostFeed>>
     {
         return from(this.prisma.feedPost.update({
                 where:{id},
@@ -55,7 +55,7 @@ export class FeedService
         
     }
 
-    DeletePostFeed (id: number): Observable<Partial<PostFeedInterface>>
+    DeletePostFeed (id: number): Observable<Partial<PostFeed>>
     {
         
         return from(this.prisma.feedPost.delete({
