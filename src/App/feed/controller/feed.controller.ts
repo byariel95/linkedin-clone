@@ -13,7 +13,7 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Observable } from 'rxjs';
 import { CreateFeedDto, UpdateFeedDto } from '../../common/dtos/feed.dto';
 import { FeedService } from '../service/feed.service';
-import { PostFeed } from '../../../domain/models/';
+import { PostFeed } from '../../../domain/models';
 
 @ApiTags('Feed Routes')
 @Controller()
